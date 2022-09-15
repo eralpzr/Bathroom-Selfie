@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using BathroomSelfie.Data;
 using BathroomSelfie.Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,8 @@ namespace BathroomSelfie.Manager
     public sealed class GameManager : Singleton<GameManager>
     {
         public Camera mainCamera;
-
+        public GameData gameData;
+        
         public GameState GameState { get; set; }
 
         protected override void Awake()
@@ -21,8 +23,11 @@ namespace BathroomSelfie.Manager
         {
             GameState = GameState.Playing;
             UIManager.Instance.gamePanel.gameObject.SetActive(true);
+            UIManager.Instance.chat.gameObject.SetActive(true);
+            UIManager.Instance.arrowPanel.gameObject.SetActive(false);
             RefreshLevelText();
-            
+
+            //StartCoroutine(StartPlayingCoroutine());
             var chatSequence = UIManager.Instance.chat.StartChatSequence();
             chatSequence.onComplete = () => StartCoroutine(StartPlayingCoroutine());
         }
@@ -31,8 +36,15 @@ namespace BathroomSelfie.Manager
         {
             yield return new WaitForSeconds(1.25f);
             
+            UIManager.Instance.chat.gameObject.SetActive(false);
+            UIManager.Instance.arrowPanel.gameObject.SetActive(true);
+
             GameState = GameState.Playing;
-            
+            foreach (var direction in gameData.arrowDirections)
+            {
+                UIManager.Instance.arrowPanel.CreateArrow(direction);
+                yield return new WaitForSeconds(gameData.arrowWaitDuration);
+            }
         }
         
         public IEnumerator CompleteLevelCoroutine(bool failed)

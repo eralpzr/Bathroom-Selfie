@@ -11,5 +11,6 @@ namespace BathroomSelfie.Manager
 
         [Space] public UIText levelText;
         public UIChat chat;
+        public UIArrowPanel arrowPanel;
     }
 }
