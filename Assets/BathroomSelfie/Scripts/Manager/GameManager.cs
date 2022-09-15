@@ -21,6 +21,18 @@ namespace BathroomSelfie.Manager
         {
             GameState = GameState.Playing;
             UIManager.Instance.gamePanel.gameObject.SetActive(true);
+            RefreshLevelText();
+            
+            var chatSequence = UIManager.Instance.chat.StartChatSequence();
+            chatSequence.onComplete = () => StartCoroutine(StartPlayingCoroutine());
+        }
+
+        public IEnumerator StartPlayingCoroutine()
+        {
+            yield return new WaitForSeconds(1.25f);
+            
+            GameState = GameState.Playing;
+            
         }
         
         public IEnumerator CompleteLevelCoroutine(bool failed)

@@ -1,4 +1,5 @@
-﻿using BathroomSelfie.UI;
+﻿using BathroomSelfie.Gameplay.UI;
+using BathroomSelfie.UI;
 using UnityEngine;
 
 namespace BathroomSelfie.Manager
@@ -9,5 +10,6 @@ namespace BathroomSelfie.Manager
         public UIObject gamePanel;
 
         [Space] public UIText levelText;
+        public UIChat chat;
     }
 }
