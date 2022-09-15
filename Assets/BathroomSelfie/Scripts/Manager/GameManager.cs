@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using BathroomSelfie.Data;
 using BathroomSelfie.Enums;
+using BathroomSelfie.Gameplay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,10 +11,11 @@ namespace BathroomSelfie.Manager
     public sealed class GameManager : Singleton<GameManager>
     {
         public Camera mainCamera;
+        public Woman woman;
         public GameData gameData;
         
         public GameState GameState { get; set; }
-
+        
         protected override void Awake()
         {
             base.Awake();
@@ -21,7 +24,6 @@ namespace BathroomSelfie.Manager
         
         private void Start()
         {
-            GameState = GameState.Playing;
             UIManager.Instance.gamePanel.gameObject.SetActive(true);
             UIManager.Instance.chat.gameObject.SetActive(true);
             UIManager.Instance.arrowPanel.gameObject.SetActive(false);
@@ -31,15 +33,15 @@ namespace BathroomSelfie.Manager
             var chatSequence = UIManager.Instance.chat.StartChatSequence();
             chatSequence.onComplete = () => StartCoroutine(StartPlayingCoroutine());
         }
-
+        
         public IEnumerator StartPlayingCoroutine()
         {
             yield return new WaitForSeconds(1.25f);
             
+            GameState = GameState.Playing;
             UIManager.Instance.chat.gameObject.SetActive(false);
             UIManager.Instance.arrowPanel.gameObject.SetActive(true);
 
-            GameState = GameState.Playing;
             foreach (var direction in gameData.arrowDirections)
             {
                 UIManager.Instance.arrowPanel.CreateArrow(direction);

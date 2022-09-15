@@ -1328,6 +1328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999295089}
   - component: {fileID: 1999295090}
+  - component: {fileID: 1999295091}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1362,7 +1363,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1022290994}
+  woman: {fileID: 6669999364163695943}
   gameData: {fileID: 11400000, guid: e5460875b6299704c9386fd07973e2f1, type: 2}
+--- !u!114 &1999295091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999295088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe63fd4380b4e1484c511cb5c510950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020533889
 GameObject:
   m_ObjectHideFlags: 0
@@ -4534,6 +4548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6330734763266977791}
   - component: {fileID: 6669999364163695942}
+  - component: {fileID: 6669999364163695943}
   m_Layer: 0
   m_Name: Woman
   m_TagString: Untagged
@@ -4560,6 +4575,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6669999364163695943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669999364163695941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c3369fc2404b05a612fcffb3e6de4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &6704611991632953176
 MeshRenderer:
   m_ObjectHideFlags: 0

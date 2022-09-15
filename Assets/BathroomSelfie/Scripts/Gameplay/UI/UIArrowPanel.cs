@@ -28,17 +28,16 @@ namespace BathroomSelfie.Gameplay.UI
             var arrow = Instantiate(_arrowPrefab, _arrowRoot);
             arrow.Direction = direction;
             
-            var rectTransform = arrow.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(Screen.width / 2f + 80, 0f);
+            arrow.rectTransform.anchoredPosition = new Vector2(Screen.width / 2f + 80, 0f);
 
-            var tweener = rectTransform.DOAnchorPos(new Vector2(-( Screen.width / 2f + 80 ), 0f), GameManager.Instance.gameData.arrowMoveDuration).SetEase(Ease.Linear);
+            var tweener = arrow.rectTransform.DOAnchorPos(new Vector2(-( Screen.width / 2f + 80 ), 0f), GameManager.Instance.gameData.arrowMoveDuration).SetEase(Ease.Linear);
             tweener.onComplete = () => Destroy(arrow.gameObject);
             tweener.onUpdate = () =>
                                {
                                    if (SelectedArrow != null && SelectedArrow != arrow)
                                        return;
 
-                                   SelectedArrow = IsInBox(rectTransform) ? arrow : null;
+                                   SelectedArrow = IsInBox(arrow.rectTransform) ? arrow : null;
                                };
 
             return arrow;
@@ -50,7 +49,7 @@ namespace BathroomSelfie.Gameplay.UI
             _boxTweener?.Kill();
             
             _boxImage.color = color;
-            _boxTweener = _boxImage.DOColor(Color.white, .5f);
+            _boxTweener = _boxImage.DOColor(Color.white, .75f);
         }
 
         private bool IsInBox(RectTransform rectTransform)

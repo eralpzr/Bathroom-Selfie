@@ -1,13 +1,37 @@
 ﻿using System;
 using BathroomSelfie.Enums;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BathroomSelfie.Gameplay.UI
 {
     public sealed class UIArrow : MonoBehaviour
     {
+        [HideInInspector] public RectTransform rectTransform;
         private ArrowDirection _direction;
 
+        private Image _image;
+        
+        private void Awake()
+        {
+            _image = GetComponent<Image>();
+            rectTransform = GetComponent<RectTransform>();
+        }
+
+        public void FadeOutDestroy()
+        {
+            rectTransform.DOKill();
+
+            var seq = DOTween.Sequence();
+            seq.Join(rectTransform.DOAnchorPosY(rectTransform.anchoredPosition.y + 160f, .75f));
+            seq.Join(_image.DOFade(0f, .75f));
+            seq.onComplete = () =>
+                             {
+                                 Destroy(gameObject);
+                             };
+        }
+        
         public ArrowDirection Direction
         {
             get => _direction;

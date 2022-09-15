@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b582d0563044a2bfe647c0cecdf566, type: 3}
   m_Name: Game Data
   m_EditorClassIdentifier: 
-  arrowMoveDuration: 6
-  arrowWaitDuration: 2
+  arrowMoveDuration: 6.5
+  arrowWaitDuration: 2.5
   arrowDirections: 000000000100000003000000030000000200000000000000
