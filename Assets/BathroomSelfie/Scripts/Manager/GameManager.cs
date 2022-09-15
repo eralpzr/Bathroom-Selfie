@@ -3,6 +3,7 @@ using System.Collections;
 using BathroomSelfie.Data;
 using BathroomSelfie.Enums;
 using BathroomSelfie.Gameplay;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,14 +54,18 @@ namespace BathroomSelfie.Manager
         {
             GameState = GameState.Completed;
             Progression.Level++;
+
+            UIManager.Instance.photoStack.SpreadPhotosSequence();
             
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             
-            UIManager.Instance.gamePanel.gameObject.SetActive(false);
             UIManager.Instance.levelCompletedPanel.gameObject.SetActive(true);
             
             yield return new WaitForSeconds(1.5f);
-
+            
+            UIManager.Instance.gamePanel.gameObject.SetActive(false);
+            
+            DOTween.KillAll();
             SceneManager.LoadScene("Game");
         }
         

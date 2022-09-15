@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b582d0563044a2bfe647c0cecdf566, type: 3}
   m_Name: Game Data
   m_EditorClassIdentifier: 
-  arrowMoveDuration: 6.5
-  arrowWaitDuration: 2.5
-  arrowDirections: 000000000100000003000000030000000200000000000000
+  poseSprites:
+  - {fileID: 21300000, guid: 4fc9e6d2d7202454da20a3288bbff399, type: 3}
+  - {fileID: 21300000, guid: 5ffaaa406d4e94f7eb95f971c766509b, type: 3}
+  - {fileID: 21300000, guid: a90b0b45b36194631a5ac999dec79126, type: 3}
+  - {fileID: 21300000, guid: a6c55d4dba25f416c91b7a770dbc9cee, type: 3}
+  arrowMoveDuration: 5
+  arrowWaitDuration: 1.5
+  arrowDirections: 000000000100000002000000030000000200000000000000020000000100000003000000010000000000000002000000

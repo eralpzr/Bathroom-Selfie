@@ -21,25 +21,6 @@ namespace BathroomSelfie.Gameplay
             _animator.SetTrigger($"Pose_{pose}");
         }
 
-        public static int GetPoseFromDirection(ArrowDirection arrowDirection)
-        {
-            switch (arrowDirection)
-            {
-                case ArrowDirection.Up:
-                    return 0;
-
-                case ArrowDirection.Right:
-                    return 3;
-
-                case ArrowDirection.Down:
-                    return 1;
-
-                case ArrowDirection.Left:
-                    return 2;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(arrowDirection), arrowDirection, null);
-            }
-        }
+        
     }
 }

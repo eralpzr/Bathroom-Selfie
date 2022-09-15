@@ -1,12 +1,14 @@
 ﻿using System;
 using BathroomSelfie.Enums;
+using BathroomSelfie.Manager;
+using BathroomSelfie.UI;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BathroomSelfie.Gameplay.UI
 {
-    public sealed class UIArrow : MonoBehaviour
+    public sealed class UIArrow : UIObject
     {
         [HideInInspector] public RectTransform rectTransform;
         private ArrowDirection _direction;
@@ -31,7 +33,17 @@ namespace BathroomSelfie.Gameplay.UI
                                  Destroy(gameObject);
                              };
         }
-        
+
+        private void OnDisable()
+        {
+            UIManager.Instance.arrowPanel.DestroyArrow(this);
+
+            if (UIManager.Instance.arrowPanel.ArrowCount == 0)
+            {
+                GameManager.Instance.StartCoroutine(GameManager.Instance.CompleteLevelCoroutine(false));
+            }
+        }
+
         public ArrowDirection Direction
         {
             get => _direction;

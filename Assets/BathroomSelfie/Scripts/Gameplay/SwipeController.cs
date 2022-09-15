@@ -48,16 +48,40 @@ namespace BathroomSelfie.Gameplay
                 if (UIManager.Instance.arrowPanel.SelectedArrow && UIManager.Instance.arrowPanel.SelectedArrow.Direction == swipeDirection)
                 {
                     UIManager.Instance.arrowPanel.HighlightBox(Color.green);
+                    UIManager.Instance.flash.Flash(.15f);
                     
                     var arrow = UIManager.Instance.arrowPanel.SelectedArrow;
                     arrow.FadeOutDestroy();
-                    
-                    GameManager.Instance.woman.DoPose(Woman.GetPoseFromDirection(swipeDirection));
+
+                    var pose = GetPoseFromDirection(swipeDirection);
+                    UIManager.Instance.photoStack.CreatePhoto(pose);
+                    GameManager.Instance.woman.DoPose(pose);
                 }
                 else
                 {
                     UIManager.Instance.arrowPanel.HighlightBox(Color.red);
                 }
+            }
+        }
+        
+        public static int GetPoseFromDirection(ArrowDirection arrowDirection)
+        {
+            switch (arrowDirection)
+            {
+                case ArrowDirection.Up:
+                    return 0;
+
+                case ArrowDirection.Right:
+                    return 3;
+
+                case ArrowDirection.Down:
+                    return 1;
+
+                case ArrowDirection.Left:
+                    return 2;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(arrowDirection), arrowDirection, null);
             }
         }
     }

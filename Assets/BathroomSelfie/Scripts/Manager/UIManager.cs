@@ -12,5 +12,7 @@ namespace BathroomSelfie.Manager
         [Space] public UIText levelText;
         public UIChat chat;
         public UIArrowPanel arrowPanel;
+        public UIFlash flash;
+        public UIPhotoStack photoStack;
     }
 }

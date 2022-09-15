@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BathroomSelfie.Gameplay.UI
 {
-    public sealed class UIChat : MonoBehaviour
+    public sealed class UIChat : UIObject
     {
         [SerializeField] private float _scaleTime;
         [SerializeField] private float _waitTime;
